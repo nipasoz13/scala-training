@@ -67,6 +67,22 @@ class Chapter3Test extends FunSpec with Matchers {
         a should be(ArrayBuffer(5, 4, 13, 22, 15))
       }
     }
+
+    describe("Exercise 7") {
+      it("should remove duplicates") {
+        val a = Array(1, 2, 3, 1)
+        val b = removeDuplicates(a)
+        b should be(Array(1, 2, 3))
+      }
+    }
+
+    describe("Exercise 8") {
+      it("should remove negative numbers except the first one") {
+        val a = ArrayBuffer(1, -2, -3, 4, -5)
+        removeAllNegativesExceptFirst(a)
+        a should be(ArrayBuffer(1, -2, 4))
+      }
+    }
   }
 }
 

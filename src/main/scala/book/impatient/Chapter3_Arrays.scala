@@ -80,4 +80,23 @@ object Chapter3_Arrays {
     a.trimEnd(a.length / 2)
   }
 
+  /**
+    * 7. Write a code snippet that produces all values from an array with duplicates
+    *removed. (Hint: Look at Scaladoc.)
+    */
+  def removeDuplicates[T](a: Array[T]): Array[T] = {
+    a.distinct
+  }
+
+  /**
+    * 8. Suppose you are given an array buffer of integers and want to remove all but
+    * the first negative number. Collect positions of the negative elements, dropping the first element, reversing the
+    * sequence, and calling a.remove(i) for each index
+    */
+  def removeAllNegativesExceptFirst(a: ArrayBuffer[Int]): Unit = {
+    val negativeNumbersPositions = for (i <- a.indices if a(i) < 0) yield i
+    val removalPositions = negativeNumbersPositions.drop(1).reverse;
+    for (index <- removalPositions) a.remove(index)
+  }
+
 }
