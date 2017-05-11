@@ -1,6 +1,7 @@
 package book.impatient
 
 import scala.collection.mutable.ArrayBuffer
+import scala.runtime.Nothing$
 import scala.util.Random
 
 /**
@@ -97,6 +98,23 @@ object Chapter3_Arrays {
     val negativeNumbersPositions = for (i <- a.indices if a(i) < 0) yield i
     val removalPositions = negativeNumbersPositions.drop(1).reverse;
     for (index <- removalPositions) a.remove(index)
+  }
+
+  /** 9. Improve the solution of the preceding exercise by collecting the positions
+    * that should be moved and their target positions. Make those moves and
+    * truncate the buffer. Don’t copy any elements before the first unwanted
+    * element. */
+  def removeAllNegativesExceptFirstImproved(a: ArrayBuffer[Int]): Unit = {
+    val negativeNumbersPositions = for (i <- a.indices if a(i) < 0) yield i
+    if (negativeNumbersPositions.length >= 2) {
+      val firstPositionToRemove = negativeNumbersPositions(1)
+      val positionsToMove = for (i <- firstPositionToRemove until a.length if a(i) >= 0) yield i
+      val targetPositions = firstPositionToRemove until firstPositionToRemove + positionsToMove.length
+      for (i <- positionsToMove.indices) {
+        a(targetPositions(i)) = a(positionsToMove(i))
+      }
+      a.trimEnd(negativeNumbersPositions.length - 1)
+    }
   }
 
 }

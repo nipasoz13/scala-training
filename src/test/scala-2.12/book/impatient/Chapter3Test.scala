@@ -76,13 +76,46 @@ class Chapter3Test extends FunSpec with Matchers {
       }
     }
 
-    describe("Exercise 8") {
-      it("should remove negative numbers except the first one") {
+    describe("Exercise 8: remove negative numbers except the first one") {
+      it("should remove elements if array has more than two negative numbers") {
         val a = ArrayBuffer(1, -2, -3, 4, -5)
         removeAllNegativesExceptFirst(a)
         a should be(ArrayBuffer(1, -2, 4))
       }
+
+      it("should not modify an array with no negative numbers") {
+        val a = ArrayBuffer(1, 2, 3, 4, 5)
+        removeAllNegativesExceptFirst(a)
+        a should be(a)
+      }
+
+      it("should not modify an array with only one negative number") {
+        val a = ArrayBuffer(1, 2, -3, 4, 5)
+        removeAllNegativesExceptFirst(a)
+        a should be(a)
+      }
     }
+  }
+
+  describe("Exercise 9: remove negative numbers except the first one, improved") {
+    it("should remove negative numbers except the first one") {
+      val a = ArrayBuffer(1, -2, 3, -4, 5, -6, 7)
+      removeAllNegativesExceptFirstImproved(a)
+      a should be(ArrayBuffer(1, -2, 3, 5, 7))
+    }
+
+    it("should not modify an array with no negative numbers") {
+      val a = ArrayBuffer(1, 2, 3, 4, 5)
+      removeAllNegativesExceptFirstImproved(a)
+      a should be(a)
+    }
+
+    it("should not modify an array with only one negative number") {
+      val a = ArrayBuffer(1, 2, -3, 4, 5)
+      removeAllNegativesExceptFirstImproved(a)
+      a should be(a)
+    }
+
   }
 }
 
