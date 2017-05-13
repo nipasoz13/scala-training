@@ -11,30 +11,30 @@ class Chapter3Test extends FunSpec with Matchers {
   describe("Chapter 3: Working with Arrays") {
     describe("Exercise 1") {
       it("Should set an array with random integers between 0 inclusive and n exclusive") {
-        val a = new Array[Int](10);
+        val a = new Array[Int](10)
         setArrayWithRandomLambda(a, 10)
         all(a) should (be >= 0 and be < 10)
-        a should have size (10)
+        a should have size 10
 
-        val b = new Array[Int](10);
+        val b = new Array[Int](10)
         setArrayWithRandomForLoop(b, 10)
         all(b) should (be >= 0 and be < 10)
-        b should have size (10)
+        b should have size 10
       }
     }
 
     describe("Exercise 2") {
       it("Should swap adjacent elements of an array") {
-        val a = Array(1, 2, 3, 4, 5);
-        swap(a);
+        val a = Array(1, 2, 3, 4, 5)
+        swap(a)
         a should be(Array(2, 1, 4, 3, 5))
       }
     }
 
     describe("Exercise 3") {
       it("Should return a new array with swapped elements") {
-        val a = Array(1, 2, 3, 4, 5);
-        val swappedArray = swap2(a);
+        val a = Array(1, 2, 3, 4, 5)
+        val swappedArray = swap2(a)
         swappedArray should be(Array(2, 1, 4, 3, 5))
       }
     }
@@ -119,17 +119,17 @@ class Chapter3Test extends FunSpec with Matchers {
 
   describe("Exercise 10: Get americans time zones") {
     it("should returns 165 time zones") {
-      val timeZones = getAmericanTimeZones()
-      timeZones should have length(165)
+      val timeZones = getAmericanTimeZones
+      timeZones should have length 165
     }
 
     it("should returns time zones without America/ prefix") {
-      val timeZones = getAmericanTimeZones()
+      val timeZones = getAmericanTimeZones
       no(timeZones) should startWith("America/")
     }
 
     it("should returns sorted time zones") {
-      val timeZones = getAmericanTimeZones()
+      val timeZones = getAmericanTimeZones
       timeZones shouldBe sorted
     }
   }

@@ -4,6 +4,9 @@ import java.util.TimeZone
 
 import scala.collection.mutable.{ArrayBuffer, Buffer}
 import scala.util.Random
+import java.awt.datatransfer._
+
+import scala.collection.JavaConverters._
 
 /**
   * Created by npa on 23/04/17.
@@ -123,10 +126,23 @@ object Chapter3_Arrays {
     * 10. Make a collection of all time zones returned by java.util.TimeZone.getAvailableIDs
     * that are in America. Strip off the "America/" prefix and sort the result.
     */
-  def getAmericanTimeZones(): Array[String] = {
+  def getAmericanTimeZones: Array[String] = {
     val americaTzPrefix = "America/"
     TimeZone.getAvailableIDs.filter(tz => tz.startsWith(americaTzPrefix))
       .map(tz => tz.stripPrefix(americaTzPrefix)).sorted
+  }
+
+  /**
+    * 11. Import java.awt.datatransfer._ and make an object of type SystemFlavorMap with
+    * the call
+    * val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+    * Then call the getNativesForFlavor method with parameter DataFlavor.imageFlavor
+    * and get the return value as a Scala buffer. (Why this obscure class? It’s hard
+    * to find uses of java.util.List in the standard Java library.)
+    */
+  def getNativesImageFlavorsAsABuffer: Buffer[String] = {
+    val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+    flavors.getNativesForFlavor(DataFlavor.imageFlavor).asScala
   }
 
 }
