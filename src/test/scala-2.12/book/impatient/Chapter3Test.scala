@@ -115,7 +115,24 @@ class Chapter3Test extends FunSpec with Matchers {
       removeAllNegativesExceptFirstImproved(a)
       a should be(a)
     }
-
   }
+
+  describe("Exercise 10: Get americans time zones") {
+    it("should returns 165 time zones") {
+      val timeZones = getAmericanTimeZones()
+      timeZones should have length(165)
+    }
+
+    it("should returns time zones without America/ prefix") {
+      val timeZones = getAmericanTimeZones()
+      no(timeZones) should startWith("America/")
+    }
+
+    it("should returns sorted time zones") {
+      val timeZones = getAmericanTimeZones()
+      timeZones shouldBe sorted
+    }
+  }
+
 }
 

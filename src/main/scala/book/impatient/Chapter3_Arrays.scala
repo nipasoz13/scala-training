@@ -1,7 +1,8 @@
 package book.impatient
 
-import scala.collection.mutable.ArrayBuffer
-import scala.runtime.Nothing$
+import java.util.TimeZone
+
+import scala.collection.mutable.{ArrayBuffer, Buffer}
 import scala.util.Random
 
 /**
@@ -96,7 +97,7 @@ object Chapter3_Arrays {
     */
   def removeAllNegativesExceptFirst(a: ArrayBuffer[Int]): Unit = {
     val negativeNumbersPositions = for (i <- a.indices if a(i) < 0) yield i
-    val removalPositions = negativeNumbersPositions.drop(1).reverse;
+    val removalPositions = negativeNumbersPositions.drop(1).reverse
     for (index <- removalPositions) a.remove(index)
   }
 
@@ -115,6 +116,17 @@ object Chapter3_Arrays {
       }
       a.trimEnd(negativeNumbersPositions.length - 1)
     }
+  }
+
+
+  /**
+    * 10. Make a collection of all time zones returned by java.util.TimeZone.getAvailableIDs
+    * that are in America. Strip off the "America/" prefix and sort the result.
+    */
+  def getAmericanTimeZones(): Array[String] = {
+    val americaTzPrefix = "America/"
+    TimeZone.getAvailableIDs.filter(tz => tz.startsWith(americaTzPrefix))
+      .map(tz => tz.stripPrefix(americaTzPrefix)).sorted
   }
 
 }
