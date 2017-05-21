@@ -1,0 +1,3 @@
+Test file for "Scala for the impatient", Chapter 4: Maps
+Hello World !
+This is a world count test
