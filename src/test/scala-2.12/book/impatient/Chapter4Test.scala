@@ -31,6 +31,17 @@ class Chapter4Test extends FunSpec with Matchers {
         wordCountResult("Java") should be(0)
       }
     }
+
+    describe("Exercise 3") {
+      it("should count words of a file") {
+        val testFilePath = getFilePathFromClassPath("wordCountTest.txt")
+        val wordCountResult = wordCountImmutable(testFilePath)
+        wordCountResult("For") should be(2)
+        wordCountResult("Test") should be(2)
+        wordCountResult("Hello") should be(1)
+        wordCountResult("Java") should be(0)
+      }
+    }
   }
 
   def getFilePathFromClassPath(filePath: String): Path = {

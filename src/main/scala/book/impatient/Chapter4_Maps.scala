@@ -29,4 +29,15 @@ object Chapter4_Maps {
     }
     wordCount.toMap.withDefaultValue(0)
   }
+
+  /** 3. Repeat the preceding exercise with an immutable map. */
+  def wordCountImmutable(filePath: Path): Map[String, Int] =  {
+    val in = new java.util.Scanner(filePath)
+    var wordCount = Map[String, Int]()
+    while (in.hasNext()) {
+      val word = in.next().capitalize
+      wordCount += (word -> (wordCount.getOrElse(word,0) + 1))
+    }
+    wordCount.withDefaultValue(0)
+  }
 }
