@@ -1,7 +1,9 @@
 package book.impatient
 
 import java.nio.file.Path
+import java.util.Scanner
 
+import scala.collection.immutable.SortedMap
 import scala.collection.mutable
 
 /**
@@ -21,7 +23,7 @@ object Chapter4_Maps {
     * how often each word appears. To read the words, simply use a java.util.Scanner
     */
   def wordCount(filePath: Path): Map[String, Int] = {
-    val in = new java.util.Scanner(filePath)
+    val in = new Scanner(filePath)
     val wordCount = mutable.Map[String, Int]().withDefaultValue(0)
     while (in.hasNext()) {
       val word = in.next().capitalize
@@ -31,12 +33,26 @@ object Chapter4_Maps {
   }
 
   /** 3. Repeat the preceding exercise with an immutable map. */
-  def wordCountImmutable(filePath: Path): Map[String, Int] =  {
-    val in = new java.util.Scanner(filePath)
+  def wordCountImmutable(filePath: Path): Map[String, Int] = {
+    val in = new Scanner(filePath)
     var wordCount = Map[String, Int]()
     while (in.hasNext()) {
       val word = in.next().capitalize
-      wordCount += (word -> (wordCount.getOrElse(word,0) + 1))
+      wordCount += (word -> (wordCount.getOrElse(word, 0) + 1))
+    }
+    wordCount.withDefaultValue(0)
+  }
+
+  /**
+    * 4. Repeat the preceding exercise with a sorted map, so that the words are
+    * printed in sorted order.
+    */
+  def wordCountSorted(filePath: Path): Map[String, Int] = {
+    val in = new Scanner(filePath)
+    var wordCount = SortedMap[String, Int]()
+    while (in.hasNext()) {
+      val word = in.next().capitalize
+      wordCount += (word -> (wordCount.getOrElse(word, 0) + 1))
     }
     wordCount.withDefaultValue(0)
   }
