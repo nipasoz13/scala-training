@@ -1,9 +1,10 @@
 package book.impatient
 
 import java.nio.file.Path
-import java.util.Scanner
+import java.util.{Scanner, TreeMap}
 
-import scala.collection.immutable.SortedMap
+import scala.collection.JavaConverters.mapAsScalaMapConverter
+import scala.collection.immutable.{ListMap, SortedMap}
 import scala.collection.mutable
 
 /**
@@ -55,5 +56,18 @@ object Chapter4_Maps {
       wordCount += (word -> (wordCount.getOrElse(word, 0) + 1))
     }
     wordCount.withDefaultValue(0)
+  }
+
+  /** 5. Repeat the preceding exercise with a java.util.TreeMap that you adapt to the
+    * Scala API.
+    */
+  def wordCountTreeMap(filePath: Path): Map[String, Int] = {
+    val in = new Scanner(filePath)
+    val wordCount:mutable.Map[String,Int] = new TreeMap[String, Int].asScala
+    while (in.hasNext()) {
+      val word = in.next().capitalize
+      wordCount += (word -> (wordCount.getOrElse(word, 0) + 1))
+    }
+    SortedMap(wordCount.toSeq:_*).withDefaultValue(0)
   }
 }

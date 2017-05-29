@@ -58,6 +58,22 @@ class Chapter4Test extends FunSpec with Matchers {
         wordCountResult.keySet.toList shouldBe sorted
       }
     }
+
+    describe("Exercise 5: Sorted word count with Java treeMap") {
+      val testFilePath = getFilePathFromClassPath("wordCountTest.txt")
+      val wordCountResult = wordCountTreeMap(testFilePath)
+
+      it("should count words of a file") {
+        wordCountResult("For") should be(2)
+        wordCountResult("Test") should be(2)
+        wordCountResult("Hello") should be(1)
+        wordCountResult("Java") should be(0)
+      }
+
+      it("should return a map sorted by word") {
+        wordCountResult.keySet.toList shouldBe sorted
+      }
+    }
   }
 
   def getFilePathFromClassPath(filePath: String): Path = {
