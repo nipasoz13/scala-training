@@ -1,7 +1,7 @@
 package book.impatient
 
 import java.nio.file.Path
-import java.util.{Scanner, TreeMap}
+import java.util.{Calendar, Scanner, TreeMap}
 
 import scala.collection.JavaConverters.mapAsScalaMapConverter
 import scala.collection.immutable.{ListMap, SortedMap}
@@ -63,11 +63,28 @@ object Chapter4_Maps {
     */
   def wordCountTreeMap(filePath: Path): Map[String, Int] = {
     val in = new Scanner(filePath)
-    val wordCount:mutable.Map[String,Int] = new TreeMap[String, Int].asScala
+    val wordCount: mutable.Map[String, Int] = new TreeMap[String, Int].asScala
     while (in.hasNext()) {
       val word = in.next().capitalize
       wordCount += (word -> (wordCount.getOrElse(word, 0) + 1))
     }
-    SortedMap(wordCount.toSeq:_*).withDefaultValue(0)
+    SortedMap(wordCount.toSeq: _*).withDefaultValue(0)
+  }
+
+  /**
+    * 6. Define a linked hash map that maps "Monday" to java.util.Calendar.MONDAY , and
+    * similarly for the other weekdays. Demonstrate that the elements are visited
+    * in insertion order.
+    */
+  def calendarDaysMap(): Map[String, Int] = {
+    val map = mutable.LinkedHashMap[String, Int]()
+    map += ("Monday" -> Calendar.MONDAY)
+    map += ("Tuesday" -> Calendar.TUESDAY)
+    map += ("Wednesday" -> Calendar.WEDNESDAY)
+    map += ("Thursday" -> Calendar.THURSDAY)
+    map += ("Friday" -> Calendar.FRIDAY)
+    map += ("Saturday" -> Calendar.SATURDAY)
+    map += ("Sunday" -> Calendar.SUNDAY)
+    ListMap(map.toSeq:_*)
   }
 }

@@ -1,6 +1,7 @@
 package book.impatient
 
 import java.nio.file.{Path, Paths}
+import java.util.Calendar._
 
 import org.scalatest.{FunSpec, Matchers}
 import Chapter4_Maps._
@@ -72,6 +73,24 @@ class Chapter4Test extends FunSpec with Matchers {
 
       it("should return a map sorted by word") {
         wordCountResult.keySet.toList shouldBe sorted
+      }
+    }
+
+    describe("Exercice 6: Map to days to their Calendar integer code") {
+      val map = calendarDaysMap
+      it("should be ordered by days from Monday to Sunday") {
+        val keys = Set("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+        map.keys should be(keys)
+      }
+
+      it("should map day to its Calendar code") {
+        map("Monday") should be(MONDAY)
+        map("Tuesday") should be(TUESDAY)
+        map("Wednesday") should be(WEDNESDAY)
+        map("Thursday") should be(THURSDAY)
+        map("Friday") should be(FRIDAY)
+        map("Saturday") should be(SATURDAY)
+        map("Sunday") should be(SUNDAY)
       }
     }
   }
