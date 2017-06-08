@@ -107,13 +107,21 @@ object Chapter4_Maps {
 
   def mapToStringArray(properties: Map[String, String]): List[String] = {
     val propertyKeyMaxLength = properties.keys.map(key => key.length).max
-    val array = for((k,v) <- properties)
-      yield k.padTo(propertyKeyMaxLength + 1," ").mkString + "| " + v
+    val array = for ((k, v) <- properties)
+      yield k.padTo(propertyKeyMaxLength + 1, " ").mkString + "| " + v
     array.toList
   }
 
   def getSystemProperties(): Map[String, String] = {
     System.getProperties.asScala.toMap
+  }
+
+  /**
+    * 8. Write a function minmax(values: Array[Int]) that returns a pair containing the
+    * smallest and the largest values in the array.
+    */
+  def minMax(array: Array[Int]): Tuple2[Int, Int] = {
+    Tuple2(array.min, array.max)
   }
 
 }

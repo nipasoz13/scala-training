@@ -116,6 +116,13 @@ class Chapter4Test extends FunSpec with Matchers {
         formattedKeyValues should contain("java.vm.name          | Java HotSpot(TM) Server VM")
       }
     }
+
+    describe("Exercise 8: MinMax function") {
+      it("should returns a pair with the min and max of a list of integers") {
+        val minMaxResult = minMax(Array(1, 2, 3, 4))
+        minMaxResult should be(Tuple2(1, 4))
+      }
+    }
   }
 
   def getFilePathFromClassPath(filePath: String): Path = {
