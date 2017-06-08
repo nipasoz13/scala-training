@@ -3,7 +3,7 @@ package book.impatient
 import java.nio.file.Path
 import java.util.{Calendar, Scanner, TreeMap}
 
-import scala.collection.JavaConverters.mapAsScalaMapConverter
+import scala.collection.JavaConverters.{mapAsScalaMapConverter, propertiesAsScalaMapConverter}
 import scala.collection.immutable.{ListMap, SortedMap}
 import scala.collection.mutable
 
@@ -85,6 +85,35 @@ object Chapter4_Maps {
     map += ("Friday" -> Calendar.FRIDAY)
     map += ("Saturday" -> Calendar.SATURDAY)
     map += ("Sunday" -> Calendar.SUNDAY)
-    ListMap(map.toSeq:_*)
+    ListMap(map.toSeq: _*)
   }
+
+  /**
+    * 7. Print a table of all Java properties reported by the getProperties method of the
+    * java.lang.System class, like this:
+    * java.runtime.name     | Java(TM) SE Runtime Environment
+    * sun.boot.library.path | /home/apps/jdk1.6.0_21/jre/lib/i386
+    * java.vm.version       | 17.0-b16
+    * java.vm.vendor        | Sun Microsystems Inc.
+    * java.vendor.url       | http://java.sun.com/
+    * path.separator        | :
+    * java.vm.name          | Java HotSpot(TM) Server VM
+    *
+    * You need to find the length of the longest key before you can print the table.
+    */
+  def getFormattedJavaProperties(): Iterable[String] = {
+    mapToStringArray(getSystemProperties)
+  }
+
+  def mapToStringArray(properties: Map[String, String]): List[String] = {
+    val propertyKeyMaxLength = properties.keys.map(key => key.length).max
+    val array = for((k,v) <- properties)
+      yield k.padTo(propertyKeyMaxLength + 1," ").mkString + "| " + v
+    array.toList
+  }
+
+  def getSystemProperties(): Map[String, String] = {
+    System.getProperties.asScala.toMap
+  }
+
 }

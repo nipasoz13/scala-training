@@ -3,9 +3,10 @@ package book.impatient
 import java.nio.file.{Path, Paths}
 import java.util.Calendar._
 
+import book.impatient.Chapter4_Maps._
 import org.scalatest.{FunSpec, Matchers}
-import Chapter4_Maps._
 
+import scala.collection.mutable
 
 /**
   * Created by npa on 21/05/17.
@@ -91,6 +92,28 @@ class Chapter4Test extends FunSpec with Matchers {
         map("Friday") should be(FRIDAY)
         map("Saturday") should be(SATURDAY)
         map("Sunday") should be(SUNDAY)
+      }
+    }
+
+    describe("Exercise 7: Print java properties") {
+      val mockedProperties = mutable.Map("java.runtime.name" -> "Java(TM) SE Runtime Environment")
+      mockedProperties += ("sun.boot.library.path" -> "/home/apps/jdk1.6.0_21/jre/lib/i386")
+      mockedProperties += ("java.vm.name" -> "Java HotSpot(TM) Server VM")
+
+      ignore("should return a formatted list of java properties") {
+        //TODO: Try to mock either System.getProperties or scala conversion
+
+        val javaProperties = getFormattedJavaProperties();
+        javaProperties should contain("java.runtime.name     | Java(TM) SE Runtime Environment")
+        javaProperties should contain("sun.boot.library.path | /home/apps/jdk1.6.0_21/jre/lib/i386")
+        javaProperties should contain("java.vm.name          | Java HotSpot(TM) Server VM")
+      }
+
+      it("should format map") {
+        val formattedKeyValues = mapToStringArray(mockedProperties.toMap)
+        formattedKeyValues should contain("java.runtime.name     | Java(TM) SE Runtime Environment")
+        formattedKeyValues should contain("sun.boot.library.path | /home/apps/jdk1.6.0_21/jre/lib/i386")
+        formattedKeyValues should contain("java.vm.name          | Java HotSpot(TM) Server VM")
       }
     }
   }
