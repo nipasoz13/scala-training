@@ -124,4 +124,19 @@ object Chapter4_Maps {
     Tuple2(array.min, array.max)
   }
 
+  /**
+    * 9. Write a function lteqgt(values: Array[Int], v: Int) that returns a triple containing
+    * the counts of values less than v , equal to v , and greater than v .
+    */
+  def lteqgt(values: Array[Int], v: Int): Tuple3[Int, Int, Int] = {
+    def compareToV(e: Int): Int = {
+      if (e < v) -1
+      else if (e == v) 0
+      else 1
+    }
+
+    val groupedValues = values.groupBy(e => compareToV(e))
+    Tuple3(groupedValues(-1).size, groupedValues(0).size, groupedValues(1).size)
+  }
+
 }
