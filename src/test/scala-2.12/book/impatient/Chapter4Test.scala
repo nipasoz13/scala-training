@@ -128,7 +128,12 @@ class Chapter4Test extends FunSpec with Matchers {
       it("should produce a triple with the 3 counts") {
         val v = 3
         val counts = lteqgt(Array(1, 2, 3, 4, 5, 6), v)
-        counts should be(Tuple3(2,1,3))
+        counts should be(Tuple3(2, 1, 3))
+      }
+      it("should produce a triple zero for an empty list") {
+        val v = 5
+        val counts = lteqgt(Array(), v)
+        counts should be(Tuple3(0, 0, 0))
       }
     }
   }

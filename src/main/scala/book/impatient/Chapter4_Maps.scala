@@ -135,7 +135,7 @@ object Chapter4_Maps {
       else 1
     }
 
-    val groupedValues = values.groupBy(e => compareToV(e))
+    val groupedValues = values.groupBy(e => compareToV(e)).withDefaultValue(Array())
     Tuple3(groupedValues(-1).size, groupedValues(0).size, groupedValues(1).size)
   }
 
