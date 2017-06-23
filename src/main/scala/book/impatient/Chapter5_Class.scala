@@ -41,7 +41,7 @@ object Chapter5_Class {
       throw new IllegalArgumentException("Invalid hour: should be defined between 0 and 23")
     }
 
-    if(minutes < 0 || minutes > 59) {
+    if (minutes < 0 || minutes > 59) {
       throw new IllegalArgumentException("Invalid minutes: should be defined between 0 and 59")
     }
 
@@ -49,10 +49,28 @@ object Chapter5_Class {
       this.minutesAfterMidnight < time.minutesAfterMidnight
     }
 
-    private def minutesAfterMidnight : Int = {
+    private def minutesAfterMidnight: Int = {
       hours * 60 + minutes - 1
     }
   }
 
+  /** 4. Reimplement the Time class from the preceding exercise so that the internal
+    * representation is the number of minutes since midnight (between 0 and 24 ×
+    * 60 – 1). Do not change the public interface. That is, client code should be
+    * unaffected by your change. **/
+  class Time2(val hours: Int, val minutes: Int) {
+    private val minutesAfterMidnight = hours * 60 + minutes - 1
 
+    if (hours < 0 || hours > 23) {
+      throw new IllegalArgumentException("Invalid hour: should be defined between 0 and 23")
+    }
+
+    if (minutes < 0 || minutes > 59) {
+      throw new IllegalArgumentException("Invalid minutes: should be defined between 0 and 59")
+    }
+
+    def before(time: Time2): Boolean = {
+      this.minutesAfterMidnight < time.minutesAfterMidnight
+    }
+  }
 }

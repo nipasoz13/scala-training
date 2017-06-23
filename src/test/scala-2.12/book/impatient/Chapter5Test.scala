@@ -1,6 +1,6 @@
 package book.impatient
 
-import book.impatient.Chapter5_Class.{BankAccount, Counter, Time}
+import book.impatient.Chapter5_Class.{BankAccount, Counter, Time, Time2}
 import org.scalatest.{FunSpec, Matchers}
 
 /**
@@ -69,6 +69,34 @@ class Chapter5Test extends FunSpec with Matchers {
       it("before should compare dates in chronological order") {
         new Time(10, 2) before new Time(10, 1) should be(false)
         new Time(12, 20) before new Time(13, 10) should be(true)
+      }
+    }
+
+    describe("Exercise 4: Time new implementation") {
+      it("should throw an error if time is constructed with an hour outside the 0-23 range") {
+        intercept[IllegalArgumentException] {
+          new Time2(24, 1)
+        }
+        intercept[IllegalArgumentException] {
+          new Time2(-1, 3)
+        }
+      }
+      it("should throw an error if time is constructed with minutes outside 0-59 range") {
+        intercept[IllegalArgumentException] {
+          new Time2(12, -2)
+        }
+        intercept[IllegalArgumentException] {
+          new Time2(11, 60)
+        }
+      }
+      it("should be defined hours and minutes") {
+        val time = new Time2(10, 23)
+        time.hours should be(10)
+        time.minutes should be(23)
+      }
+      it("before should compare dates in chronological order") {
+        new Time2(10, 2) before new Time2(10, 1) should be(false)
+        new Time2(12, 20) before new Time2(13, 10) should be(true)
       }
     }
 
