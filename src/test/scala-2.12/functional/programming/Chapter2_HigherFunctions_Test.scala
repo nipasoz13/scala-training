@@ -1,6 +1,7 @@
 package functional.programming
 
 import book.functional.programming.Chapter2_HigherFunctions._
+import book.impatient.Chapter5_Class.Student
 import org.scalatest.{FunSpec, Matchers}
 /**
   * Created by npa on 26/06/17.

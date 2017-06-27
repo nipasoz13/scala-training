@@ -1,5 +1,7 @@
 package book.impatient
 
+import scala.beans.BeanProperty
+
 /**
   * Created by npa on 17/06/17.
   */
@@ -73,4 +75,31 @@ object Chapter5_Class {
       this.minutesAfterMidnight < time.minutesAfterMidnight
     }
   }
+
+  /**
+    * 5. Make a class Student with read-write JavaBeans properties name (of type String )
+    * and id (of type Long ). What methods are generated? (Use javap to check.) Can
+    * you call the JavaBeans getters and setters in Scala? Should you?
+    */
+  class Student(@BeanProperty var name: String, @BeanProperty var id: Long) {
+  }
+
+  /**
+    * Javap result
+    * Compiled from "Student.scala"
+    * public class Student {
+    * public java.lang.String name();
+    * public void name_$eq(java.lang.String);
+    * public long id();
+    * public void id_$eq(long);
+    * public java.lang.String getName();
+    * public void setName(java.lang.String);
+    * public long getId();
+    * public void setId(long);
+    * public Student(java.lang.String, long);
+    * }
+    * Getter et setter are accessible from Scala code
+    */
+
+
 }
