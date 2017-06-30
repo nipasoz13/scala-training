@@ -26,9 +26,16 @@ object Chapter2_HigherFunctions {
     @annotation.tailrec
     def isSorted(list: Array[A], prev: A, isSortedSoFar: Boolean): Boolean = {
       if (list.isEmpty) isSortedSoFar
-      else if(!isSortedSoFar) false
+      else if (!isSortedSoFar) false
       else isSorted(list.tail, list.head, isSortedSoFar && ordered(prev, list.head))
     }
+
     isSorted(as, as.head, true)
   }
+
+  /** Exercise 2.3: Let’s look at another example, currying, 9 which converts a function f of two arguments
+    * into a function of one argument that partially applies f . Here again there’s only one
+    * implementation that compiles. Write this implementation. **/
+  def curry[A, B, C](f: (A, B) => C): A => (B => C) =
+    a => b => f(a, b)
 }

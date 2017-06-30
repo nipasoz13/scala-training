@@ -24,8 +24,18 @@ class Chapter2_HigherFunctions_Test extends FunSpec with Matchers {
         isSorted(Array(5, 4, 10, 13), supOrEquals) should be(false)
 
         val infOrEquals = (x: String, y: String) => x <= y
-        isSorted(Array("a","b","c","d"), infOrEquals) should be(true)
-        isSorted(Array("d","a","c","d"), infOrEquals) should be(false)
+        isSorted(Array("a", "b", "c", "d"), infOrEquals) should be(true)
+        isSorted(Array("d", "a", "c", "d"), infOrEquals) should be(false)
+      }
+    }
+
+    describe("Exercise 2.3") {
+      it("should curry a function") {
+        val multiply = (x: Int, y: Int) => x * y
+        val curriedMultiply = curry(multiply)
+
+        curriedMultiply(3)(4) should be(multiply(3, 4))
+        curriedMultiply(5)(10) should be(multiply(5, 10))
       }
     }
   }
