@@ -38,5 +38,15 @@ class Chapter2_HigherFunctions_Test extends FunSpec with Matchers {
         curriedMultiply(5)(10) should be(multiply(5, 10))
       }
     }
+
+    describe("Exercise 2.4:") {
+      it("should uncurry a function") {
+        val curriedMultiplied = (x: Int) => (y: Int) => x * y
+        val uncurriedMultiply = uncurry(curriedMultiplied)
+
+        uncurriedMultiply(3, 4) should be(curriedMultiplied(3)(4))
+        uncurriedMultiply(5, 10) should be(curriedMultiplied(5)(10))
+      }
+    }
   }
 }
