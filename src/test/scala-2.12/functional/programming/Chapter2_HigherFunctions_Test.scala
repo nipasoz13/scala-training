@@ -1,6 +1,9 @@
 package functional.programming
 
 import book.functional.programming.Chapter2_HigherFunctions._
+import book.functional.programming.datastructures
+import book.functional.programming.datastructures.List.sum
+import book.functional.programming.datastructures.{Cons, Nil}
 import org.scalatest.{FunSpec, Matchers}
 
 /**
@@ -46,6 +49,15 @@ class Chapter2_HigherFunctions_Test extends FunSpec with Matchers {
 
         uncurriedMultiply(3, 4) should be(curriedMultiplied(3)(4))
         uncurriedMultiply(5, 10) should be(curriedMultiplied(5)(10))
+      }
+    }
+
+    describe("Exercise 2.5:") {
+      it("should compose two functions") {
+        val format = (x:Int) => "Formatted result %d".format(x)
+        val absolute = (x:Int) => math.abs(x)
+
+        compose(format, absolute)(-3) should be ("Formatted result 3")
       }
     }
   }
