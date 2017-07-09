@@ -32,6 +32,12 @@ object List {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
 
+  def append[A](a1: List[A], a2: List[A]): List[A] =
+    a1 match {
+      case Nil => a2
+      case Cons(h, t) => Cons(h, append(t, a2))
+    }
+
   /** 3.1: Implement the function tail for removing the first element of a List . Note that the
     * function takes constant time. **/
   def tail[A](as: List[A]): List[A] = as match {
@@ -64,6 +70,20 @@ object List {
     case Nil => Nil
     case Cons(x, xs) if !f(x) => Cons(x, xs)
     case Cons(x, xs) if f(x) => dropWhile(xs, f)
+  }
+
+  /** 3.6 Not everything works out so nicely. Implement a function, init , that returns a List
+    * consisting of all but the last element of a List . So, given List(1,2,3,4) , init will
+    * return List(1,2,3) . Why can’t this function be implemented in constant time like
+    * tail ? **/
+  def init[A](l: List[A]): List[A] = {
+    @annotation.tailrec
+    def init[A](result: List[A], tail: List[A]): List[A] = tail match {
+      case Nil => Nil
+      case Cons(_, Nil) => result
+      case Cons(x, xs) => init(append(result, Cons(x, Nil)), xs)
+    }
+    init(Nil, l)
   }
 
 }

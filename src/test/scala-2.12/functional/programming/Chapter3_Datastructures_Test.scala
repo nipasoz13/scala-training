@@ -48,5 +48,12 @@ class Chapter3_Datastructures_Test extends FunSpec with Matchers {
         dropWhile(Nil, (x: Int) => x < 10) should be(Nil)
       }
     }
+
+    describe("Exercice 3.6: drop the last element of a list") {
+      it("should return a list without its last element") {
+        init(List(1, 2, 3, 4)) should be(List(1, 2, 3))
+        init(Nil) should be(Nil)
+      }
+    }
   }
 }
