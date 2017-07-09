@@ -34,5 +34,12 @@ class Chapter3_Datastructures_Test extends FunSpec with Matchers {
         setHead(10, Nil) should be(List(10))
       }
     }
+
+    describe("Exercice 3.4: drop n elements of a list") {
+      it("should return a list without its first element") {
+        drop(List(1, 2, 3, 4), 2) should be(List(3, 4))
+        drop(Nil, 10) should be(Nil)
+      }
+    }
   }
 }
