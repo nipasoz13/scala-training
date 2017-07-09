@@ -52,10 +52,18 @@ object List {
     * Note that this function takes time proportional only to the number of elements being
     * dropped—we don’t need to make a copy of the entire List . **/
   @annotation.tailrec
-  def drop[A](l: List[A], n: Int): List[A] = {
-    if (l == Nil) Nil
-    else if (n == 0) l
-    else drop(tail(l), n - 1)
+  def drop[A](l: List[A], n: Int): List[A] =
+  if (l == Nil) Nil
+  else if (n == 0) l
+  else drop(tail(l), n - 1)
+
+  /** 3.5 Implement dropWhile , which removes elements from the List prefix as long as they
+    * match a predicate. **/
+  @annotation.tailrec
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) if !f(x) => Cons(x, xs)
+    case Cons(x, xs) if f(x) => dropWhile(xs, f)
   }
 
 }
