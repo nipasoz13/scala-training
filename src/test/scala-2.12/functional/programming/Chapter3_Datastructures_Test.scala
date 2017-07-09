@@ -27,5 +27,12 @@ class Chapter3_Datastructures_Test extends FunSpec with Matchers {
         tail(Nil) should be(Nil)
       }
     }
+
+    describe("Exercice 3.3: set Head") {
+      it("should return a list without its first element") {
+        setHead(10, List(1, 2, 3, 4)) should be(List(10, 2, 3, 4))
+        setHead(10, Nil) should be(List(10))
+      }
+    }
   }
 }

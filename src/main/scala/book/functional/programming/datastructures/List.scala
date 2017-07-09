@@ -33,4 +33,9 @@ object List {
     case Cons(_, xs) => xs
   }
 
+  def setHead[A](head:A, as:List[A]):List[A] = as match {
+    case Nil => Cons(head, Nil)
+    case Cons(_, xs) => Cons(head, xs)
+  }
+
 }
