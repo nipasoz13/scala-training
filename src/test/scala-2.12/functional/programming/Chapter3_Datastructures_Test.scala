@@ -62,5 +62,11 @@ class Chapter3_Datastructures_Test extends FunSpec with Matchers {
         List.length(List(4, 5, 6)) should be(3)
       }
     }
+
+    describe("Exercise 3.10: Foldleft tail recursive") {
+      it("should fold") {
+        foldLeft(List(1,2,3,4),"")(_ + _) should be("1234")
+      }
+    }
   }
 }

@@ -95,4 +95,19 @@ object List {
 
   /** 3.9: Compute the length of a list using foldRight **/
   def length[A](l: List[A]): Int = foldRight(l, 0)((_, y) => y + 1)
+
+  /**
+    * 3.10: Our implementation of foldRight is not tail-recursive and will result in a StackOver-
+    * flowError for large lists (we say it’s not stack-safe). Convince yourself that this is the
+    * case, and then write another general list-recursion function, foldLeft, that is tail-recursive,
+    * using the techniques we discussed in the previous chapter. Here is its signature:
+    */
+  def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = {
+    @annotation.tailrec
+    def go(tail: List[A], result: B): B = tail match {
+      case Nil => result
+      case Cons(x, xs) => go(xs, f(result, x))
+    }
+    go(l, z)
+  }
 }
