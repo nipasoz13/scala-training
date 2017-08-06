@@ -55,5 +55,12 @@ class Chapter3_Datastructures_Test extends FunSpec with Matchers {
         init(Nil) should be(Nil)
       }
     }
+
+    describe("Exercise 3.9: Compute the length of a list using foldRight") {
+      it("should compute the length") {
+        List.length(Nil) should be(0)
+        List.length(List(4, 5, 6)) should be(3)
+      }
+    }
   }
 }

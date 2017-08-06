@@ -38,6 +38,12 @@ object List {
       case Cons(h, t) => Cons(h, append(t, a2))
     }
 
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B =
+    as match {
+      case Nil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
+
   /** 3.1: Implement the function tail for removing the first element of a List . Note that the
     * function takes constant time. **/
   def tail[A](as: List[A]): List[A] = as match {
@@ -83,7 +89,10 @@ object List {
       case Cons(_, Nil) => result
       case Cons(x, xs) => init(append(result, Cons(x, Nil)), xs)
     }
+
     init(Nil, l)
   }
 
+  /** 3.9: Compute the length of a list using foldRight **/
+  def length[A](l: List[A]): Int = foldRight(l, 0)((_, y) => y + 1)
 }
