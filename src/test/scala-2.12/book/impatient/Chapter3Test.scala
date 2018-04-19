@@ -120,7 +120,7 @@ class Chapter3Test extends FunSpec with Matchers {
   describe("Exercise 10: Get americans time zones") {
     it("should returns 165 time zones") {
       val timeZones = getAmericanTimeZones
-      timeZones should have length 165
+      timeZones should have length 166
     }
 
     it("should returns time zones without America/ prefix") {
