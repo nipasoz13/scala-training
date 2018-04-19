@@ -1,9 +1,10 @@
 package functional.programming
 
+import book.functional.programming.Chapter3_Datastructures._
 import book.functional.programming.datastructures
-import org.scalatest.{FunSpec, Matchers}
 import book.functional.programming.datastructures.List._
 import book.functional.programming.datastructures._
+import org.scalatest.{FunSpec, Matchers}
 
 /**
   * Created by npa on 8/07/17.
@@ -66,6 +67,24 @@ class Chapter3_Datastructures_Test extends FunSpec with Matchers {
     describe("Exercise 3.10: Foldleft tail recursive") {
       it("should fold") {
         foldLeft(List(1,2,3,4),"")(_ + _) should be("1234")
+      }
+    }
+
+    describe("Exercise 3.11: Write sum, product, and a function to compute the " +
+      "length of a list using foldLeft.") {
+      it("should sum suing foldleft") {
+        sumFl(List()) should be(0)
+        sumFl(List(-1,5,0,4)) should be(8)
+      }
+
+      it("should multiply using foldleft") {
+        productFl(List()) should be(1)
+        productFl(List(-0.5,4.0)) should be(-2d)
+      }
+
+      it("should get length using foldleft") {
+        lengthFl(List()) should be(0)
+        lengthFl(List(1,2,5)) should be(3)
       }
     }
   }
